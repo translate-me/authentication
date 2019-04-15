@@ -11,4 +11,4 @@ RUN apk add --no-cache --virtual .build-deps \
 COPY requirements.txt /api/
 RUN pip install -r requirements.txt
 COPY . /api/
-EXPOSE 8080
+EXPOSE 8090
