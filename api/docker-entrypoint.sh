@@ -10,5 +10,6 @@ done
 }
 
 wait_ready db $POSTGRES_PORT
+exec python manage.py makemigrations &
 exec python3 manage.py migrate &
 exec python3 manage.py runserver 0.0.0.0:8090
