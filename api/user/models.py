@@ -21,5 +21,4 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = _("usernames")
 
     def get_name(self):
-        return self.username.strip(
         return self.username.strip()
