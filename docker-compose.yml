@@ -1,5 +1,10 @@
 version: '3'
 
+networks:
+  default:
+    external:
+      name: profile_profile_net
+
 services:
   db: 
     image: postgres
@@ -11,6 +16,8 @@ services:
       PGDATA: ${PERSISTENCE}
     ports:
       - "5434:5432"
+    networks:
+      - default
 
   django:
     build: ./api
@@ -22,5 +29,7 @@ services:
       HOST_SERVER: ${HOST_SERVER}
     ports:
       - "8090:8090"
+    networks:
+      - default
     depends_on:
       - db
