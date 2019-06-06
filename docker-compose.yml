@@ -1,9 +1,10 @@
 version: '3'
 
 networks:
-  default:
-    external:
-      name: profile_profile_net
+  frontend_frontend_net:
+    external: true
+  profile_profile_net:
+    external: true
 
 services:
   db: 
@@ -15,13 +16,13 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
       PGDATA: ${PERSISTENCE}
     networks:
-      - default
+      - profile_profile_net 
     ports:
       - "5434:5432"
 
   django:
     build: ./api
-    container_name: authentication_django
+    container_name: authentication
     command: ash docker-entrypoint.sh
     volumes:
       - ./api:/api
@@ -30,6 +31,7 @@ services:
     ports:
       - "8090:8090"
     networks:
-      - default
+      - profile_profile_net 
+      - frontend_frontend_net 
     depends_on:
       - db
